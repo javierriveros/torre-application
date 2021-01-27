@@ -7,6 +7,14 @@ import Head from "next/head";
 import BaseStyles from "@/styles/BaseStyles";
 import { ThemeProvider } from "@/components/Theme";
 
+import NProgress from "nprogress";
+import "@/styles/nprogress.css";
+import Router from "next/router";
+
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
+
 const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => (
