@@ -12,6 +12,8 @@ export const Layout: React.FC<{ title?: string }> = ({
       <title>Torre - {title}</title>
     </Head>
     <Navbar />
-    <main tw="w-full bg-gray-50 pt-16">{children}</main>
+    <main tw="w-full bg-gray-50 pt-16 dark:bg-gray-900 min-h-screen">
+      {children}
+    </main>
   </>
 );
