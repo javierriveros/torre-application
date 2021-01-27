@@ -3,13 +3,13 @@ import { styled } from "twin.macro";
 
 interface LogoProps {
   width?: number;
+  [x: string]: any;
 }
 
 const Inner = styled.path`
   fill-opacity: 0;
   will-change: fill-opacity;
-  animation: drawInner 1s linear forwards;
-
+  animation: drawInner 2s linear forwards;
   @keyframes drawInner {
     100% {
       fill-opacity: 1;
@@ -21,7 +21,7 @@ const Letter = styled.path`
   --stroke-dasharray-letter: 351;
   --stroke-dashoffset-letter: 350;
   fill-opacity: 0;
-  animation-delay: 1s;
+  animation-delay: 4s;
   will-change: fill-opacity;
   animation: drawLetter 2s linear forwards;
   stroke-dasharray: var(--stroke-dasharray-letter);
@@ -39,13 +39,14 @@ const Letter = styled.path`
   }
 `;
 
-export default function Logo({ width = 100 }: LogoProps) {
+export default function Logo({ width = 100, ...rest }: LogoProps) {
   return (
     <svg
       viewBox="0 0 226 242"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       width={width}
+      {...rest}
     >
       <Inner
         d="M18 165V76.5C19.2 69.7 24.1667 65.6667 26.5 64.5C50.8333 51 101 23.2 107 20C112.6 17.2 117.333 18.8333 119 20C144.5 34 196.7 62.8 201.5 66C206.3 69.2 207.833 74.6667 208 77V166C207.2 172 203 176.167 201 177.5C176.333 191.333 125.6 219.7 120 222.5C114 224.9 107.833 223.5 105.5 222.5C81.3333 209.167 31.5 181.6 25.5 178C19.5 174 18 167.667 18 165Z"
