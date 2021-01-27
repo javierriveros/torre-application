@@ -17,7 +17,7 @@ export const FilterGroup: React.FC<Props> = ({
     <div tw="p-2">
       <div tw="flex justify-between">
         <GroupTitle>{title}</GroupTitle>
-        <ExpandButton onClick={() => setOpen(!open)}>
+        <ExpandButton onClick={() => setOpen(!open)} expanded={open}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
