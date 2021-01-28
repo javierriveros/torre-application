@@ -10,14 +10,14 @@ import { Search } from "@/components/Search";
 import { Sidebar } from "@/components/Sidebar";
 import { LoadingIcon } from "@/components/Icons";
 import { useOpportunities } from "@/hooks/queries";
+import { useJobsFilters, useFiltersForJobsQuery } from "@/hooks";
 import { JobCard, JobsSkeleton } from "@/components/Jobs";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
-import { useFilters, useFiltersForQuery } from "@/hooks";
 
-export default function Home() {
+export default function JobsPage() {
   const { query } = useRouter();
-  const { getFilters } = useFilters();
-  const { and, setAnd } = useFiltersForQuery();
+  const { getFilters } = useJobsFilters();
+  const { and, setAnd } = useFiltersForJobsQuery();
 
   React.useEffect(() => {
     if (query?.term?.length) {
@@ -45,6 +45,7 @@ export default function Home() {
       <section tw="w-full bg-gray-50 dark:bg-dark-600 grid grid-cols-1 md:grid-cols-12">
         <Search
           initialValue={query?.term as string}
+          placeholder="Find a job that matches with you"
           onSubmit={(value: string) => {
             // @ts-ignore
             setAnd([

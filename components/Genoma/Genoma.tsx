@@ -7,6 +7,7 @@ import { Education, Job, Project, Award } from "@/services/api";
 import { TorreButton } from "@/components/Button";
 import { ExperienceCard } from "./ExperienceCard";
 import { Collapsible } from "@/components/Collapsible";
+import { NotFoundImage } from "@/components/NotFoundImage";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
 import { SocialIcon, VerifiedIcon } from "@/components/Icons";
 import {
@@ -30,14 +31,18 @@ export function Genoma({ data }: { data: any }) {
       <Flex tw="col-span-1" centerV col>
         <ConditionalWrap condition={data.person?.pictureThumbnail}>
           <ImageCard style={{ zIndex: 2 }}>
-            <Image
-              src={data.person.pictureThumbnail}
-              alt={`Picture of ${data.person.name}`}
-              tw="inline-block h-24 w-24 rounded-full"
-              width={150}
-              layout="intrinsic"
-              height={150}
-            />
+            {data?.person?.pictureThumbnail ? (
+              <Image
+                src={data?.person?.pictureThumbnail}
+                alt={`Picture of ${data.person.name}`}
+                tw="inline-block h-24 w-24 rounded-full"
+                width={150}
+                layout="intrinsic"
+                height={150}
+              />
+            ) : (
+              <NotFoundImage tw="inline-block h-24 w-24 rounded-full" />
+            )}
           </ImageCard>
         </ConditionalWrap>
         <Card tw="-top-8 pt-8 mb-1">
@@ -69,7 +74,7 @@ export function Genoma({ data }: { data: any }) {
             Signal
           </TorreButton>
         </Card>
-        <ConditionalWrap condition={Boolean(data.interests)}>
+        <ConditionalWrap condition={data?.interests?.length > 0}>
           <Card>
             <h2 tw="font-semibold text-xl mb-2 dark:text-white">Skills s/he wants to develop:</h2>
 
@@ -81,7 +86,7 @@ export function Genoma({ data }: { data: any }) {
           </Card>
         </ConditionalWrap>
 
-        <ConditionalWrap condition={Boolean(data?.strengths)}>
+        <ConditionalWrap condition={data?.strengths?.length > 0}>
           <Card>
             <h2 tw="font-semibold text-xl mb-2 dark:text-white">Strengths</h2>
 
@@ -95,10 +100,12 @@ export function Genoma({ data }: { data: any }) {
       </Flex>
 
       <div tw="col-span-2">
-        <Card>
-          <SectionTitle>About {data.person.name}</SectionTitle>
-          <Collapsible text={data.person.summaryOfBio} />
-        </Card>
+        <ConditionalWrap condition={Boolean(data?.person?.summaryOfBio)}>
+          <Card>
+            <SectionTitle>About {data?.person?.name}</SectionTitle>
+            <Collapsible text={data?.person?.summaryOfBio} />
+          </Card>
+        </ConditionalWrap>
 
         <Card>
           <SectionTitle>Jobs</SectionTitle>
@@ -106,9 +113,11 @@ export function Genoma({ data }: { data: any }) {
           <div tw="divide-y divide-gray-300 dark:divide-gray-500">
             <ConditionalWrap condition={Boolean(data?.jobs)}>
               <>
-                {data.jobs?.map((job: Job) => (
-                  <ExperienceCard key={job.id} experience={job} />
-                ))}
+                {data.jobs?.length > 0 ? (
+                  data.jobs?.map((job: Job) => <ExperienceCard key={job.id} experience={job} />)
+                ) : (
+                  <NotFoundImage />
+                )}
               </>
             </ConditionalWrap>
           </div>
@@ -120,9 +129,13 @@ export function Genoma({ data }: { data: any }) {
           <div tw="divide-y divide-gray-300 dark:divide-gray-500">
             <ConditionalWrap condition={Boolean(data?.education)}>
               <>
-                {data.education?.map((education: Education) => (
-                  <ExperienceCard key={education.id} experience={education} />
-                ))}
+                {data.education?.length > 0 ? (
+                  data.education?.map((education: Education) => (
+                    <ExperienceCard key={education.id} experience={education} />
+                  ))
+                ) : (
+                  <NotFoundImage />
+                )}
               </>
             </ConditionalWrap>
           </div>
@@ -134,9 +147,13 @@ export function Genoma({ data }: { data: any }) {
           <div tw="divide-y divide-gray-300 dark:divide-gray-500">
             <ConditionalWrap condition={Boolean(data?.projects)}>
               <>
-                {data.projects?.map((project: Project) => (
-                  <ExperienceCard key={project.id} experience={project} />
-                ))}
+                {data.projects?.length > 0 ? (
+                  data.projects?.map((project: Project) => (
+                    <ExperienceCard key={project.id} experience={project} />
+                  ))
+                ) : (
+                  <NotFoundImage />
+                )}
               </>
             </ConditionalWrap>
           </div>
@@ -148,9 +165,13 @@ export function Genoma({ data }: { data: any }) {
           <div tw="divide-y divide-gray-300 dark:divide-gray-500">
             <ConditionalWrap condition={Boolean(data?.awards)}>
               <>
-                {data.awards?.map((award: Award) => (
-                  <ExperienceCard key={award.id} experience={award} />
-                ))}
+                {data?.awards?.length > 0 ? (
+                  data.awards?.map((award: Award) => (
+                    <ExperienceCard key={award.id} experience={award} />
+                  ))
+                ) : (
+                  <NotFoundImage />
+                )}
               </>
             </ConditionalWrap>
           </div>
@@ -160,16 +181,19 @@ export function Genoma({ data }: { data: any }) {
           <h2 tw="font-semibold text-xl mb-2 dark:text-white">Languages</h2>
 
           <LanguagesContainer>
-            {data.languages &&
-              data.languages.map((lang: any) => (
+            {data?.languages?.length > 0 ? (
+              data.languages?.map((lang: any) => (
                 <Flex key={lang.code} centerV justifyStart tw="p-2">
-                  <LanguageCode>{lang.code}</LanguageCode>
+                  <LanguageCode>{lang?.code}</LanguageCode>
                   <p tw="px-2">
-                    <LanguageName>{lang.language}</LanguageName>
-                    <LanguageFluency>{split(lang.fluency)}</LanguageFluency>
+                    <LanguageName>{lang?.language}</LanguageName>
+                    <LanguageFluency>{split(lang?.fluency ?? "")}</LanguageFluency>
                   </p>
                 </Flex>
-              ))}
+              ))
+            ) : (
+              <NotFoundImage tw="inline-block h-24 w-24 rounded-full" />
+            )}
           </LanguagesContainer>
         </Card>
       </div>
