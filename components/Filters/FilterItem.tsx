@@ -1,17 +1,26 @@
 import * as React from "react";
-import { Checkbox, Label, LabelText } from "./styles";
+import { Input, Label, LabelText } from "./styles";
 import "twin.macro";
+import { useFilters } from "@/hooks/useFilters";
 
 export const FilterItem = ({
   label,
+  type = "radio",
   ...rest
 }: {
   label: string;
 } & React.InputHTMLAttributes<any>) => {
+  const { setFilters } = useFilters();
+  const onChange = React.useCallback(
+    (e) => {
+      setFilters(e.target.name, e.target.value);
+    },
+    [setFilters]
+  );
   return (
     <div>
       <Label>
-        <Checkbox type="checkbox" {...rest} />
+        <Input type={type} {...rest} onChange={onChange} />
         <LabelText>{label}</LabelText>
       </Label>
     </div>
