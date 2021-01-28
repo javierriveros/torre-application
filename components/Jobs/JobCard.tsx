@@ -9,13 +9,7 @@ import { Opportunity } from "@/services/api";
 import { formatMoney, split } from "@/utils";
 import { CashIcon, LocationIcon } from "@/components/Icons";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
-import {
-  ButtonsContainer,
-  Card,
-  JobSlider,
-  JobTitle,
-  JobDetail,
-} from "./styles";
+import { ButtonsContainer, Card, JobSlider, JobTitle, JobDetail } from "./styles";
 
 interface Props {
   opportunity: Opportunity;
@@ -45,23 +39,20 @@ export const JobCard = ({ opportunity }: Props) => {
           </ConditionalWrap>
         </span>
         <ConditionalWrap
-          condition={Boolean(
-            opportunity?.compensation?.data &&
-              opportunity?.compensation.visible,
-          )}
+          condition={Boolean(opportunity?.compensation?.data && opportunity?.compensation.visible)}
         >
           <p tw="dark:text-gray-300 text-gray-600 text-sm flex mt-2 ">
             <CashIcon tw="text-green-500" />
-            <p>
+            <span>
               {formatMoney(opportunity?.compensation?.data?.minAmount)}
-              {opportunity?.compensation?.data?.maxAmount &&
+              {opportunity?.compensation?.data?.minAmount &&
                 opportunity?.compensation?.data?.maxAmount &&
                 " - "}
               {formatMoney(opportunity?.compensation?.data?.maxAmount)}{" "}
               {opportunity?.compensation?.data?.currency}
               {"/"}
               {opportunity?.compensation?.data?.periodicity}
-            </p>
+            </span>
           </p>
         </ConditionalWrap>
       </div>
@@ -74,16 +65,14 @@ export const JobCard = ({ opportunity }: Props) => {
             ))}
           </JobSlider>
         </ConditionalWrap>
-        <Link href={`/jobs/${opportunity.id}`} passHref>
-          <Button>Details</Button>
-        </Link>
-        <Button
-          href={`https://torre.co/jobs/${opportunity.id}`}
-          secondary
-          target="_blank"
-        >
-          Apply
-        </Button>
+        <ButtonsContainer tw="col-span-2">
+          <Link href={`/jobs/${opportunity.id}`} passHref>
+            <Button>Details</Button>
+          </Link>
+          <Button href={`https://torre.co/jobs/${opportunity.id}`} secondary target="_blank">
+            Apply
+          </Button>
+        </ButtonsContainer>
       </ButtonsContainer>
     </Card>
   );

@@ -17,7 +17,7 @@ const RotatingSvg = styled(Svg)`
   }
 `;
 
-export const LoadingIcon = () => (
+export const LoadingIcon = ({ ...props }) => (
   <RotatingSvg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -25,6 +25,7 @@ export const LoadingIcon = () => (
     stroke="currentColor"
     fillCurrent={false}
     tw="mr-2 text-white"
+    {...props}
   >
     <path
       strokeLinecap="round"

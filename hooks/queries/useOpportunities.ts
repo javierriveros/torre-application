@@ -1,3 +1,4 @@
+import { URL } from "@/utils/config";
 import { useQuery } from "react-query";
 
 interface QueryProps {
@@ -8,6 +9,7 @@ interface QueryProps {
   currency?: string;
   aggregate?: boolean;
   periodicity?: string;
+  and?: any;
 }
 
 const fetchOpportunities = async ({
@@ -18,10 +20,11 @@ const fetchOpportunities = async ({
   size = 20,
   aggregate = true,
   offset = 0,
+  and = [],
 }: QueryProps) => {
   const res = await fetch(
     //@ts-ignore
-    `/api/opportunities/?${new URLSearchParams({
+    `${URL}/api/opportunities/?${new URLSearchParams({
       currency,
       page,
       periodicity,
@@ -38,20 +41,9 @@ const fetchOpportunities = async ({
       method: "POST",
 
       body: JSON.stringify({
-        and: [
-          { bestfor: { username: "javierriveros" } },
-          {
-            "skill/role": {
-              text: "junior",
-              experience: "potential-to-develop",
-            },
-          },
-        ],
-        location: {
-          term: "Colombia",
-        },
+        and,
       }),
-    },
+    }
   );
   const result = await res.json();
 
@@ -59,13 +51,9 @@ const fetchOpportunities = async ({
 };
 
 const useOpportunities = (options: QueryProps) => {
-  return useQuery(
-    ["opportunities", options.size],
-    () => fetchOpportunities(options),
-    {
-      keepPreviousData: true,
-    },
-  );
+  return useQuery(["opportunities", options.size, options.and], () => fetchOpportunities(options), {
+    keepPreviousData: true,
+  });
 };
 
 export { useOpportunities, fetchOpportunities };

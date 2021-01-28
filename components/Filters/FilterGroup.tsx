@@ -1,16 +1,12 @@
 import * as React from "react";
 import "twin.macro";
-import { ExpandButton, GroupTitle } from "./styles";
+import { ExpandButton, GroupTitle, Collapse } from "./styles";
 
 interface Props {
   title: string;
   active?: boolean;
 }
-export const FilterGroup: React.FC<Props> = ({
-  title,
-  active = false,
-  children,
-}) => {
+export const FilterGroup: React.FC<Props> = ({ title, active = true, children }) => {
   const [open, setOpen] = React.useState(active);
 
   return (
@@ -25,16 +21,11 @@ export const FilterGroup: React.FC<Props> = ({
             stroke="currentColor"
             tw="w-4 h-4"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </ExpandButton>
       </div>
-      {open && <div tw="flex flex-col gap-2 mt-4">{children}</div>}
+      <Collapse collapsed={!open}>{children}</Collapse>
     </div>
   );
 };

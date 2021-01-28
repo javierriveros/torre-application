@@ -1,7 +1,9 @@
 import * as React from "react";
-import { ConditionalWrap } from "../ConditionalWrap";
-import { ErrorIcon } from "../Icons";
-import { Flex } from "../utils";
+import "twin.macro";
+
+import { Flex } from "@/components/utils";
+import { ErrorIcon } from "@/components/Icons";
+import { ConditionalWrap } from "@/components/ConditionalWrap";
 
 interface Props {
   show: boolean;
