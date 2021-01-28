@@ -1,2 +1,1 @@
-export const split = (value: string, replacer: string = "-") =>
-  value.split(replacer).join(" ");
+export const split = (value: string, replacer = "-") => value.split(replacer).join(" ");
