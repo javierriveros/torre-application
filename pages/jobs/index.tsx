@@ -13,6 +13,7 @@ import { useOpportunities } from "@/hooks/queries";
 import { useJobsFilters, useFiltersForJobsQuery } from "@/hooks";
 import { JobCard, JobsSkeleton } from "@/components/Jobs";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
+import { PageTitle } from "@/components/utils";
 
 export default function JobsPage() {
   const { query } = useRouter();
@@ -75,10 +76,10 @@ export default function JobsPage() {
         />
 
         <section tw="col-span-1 md:col-span-9 px-4 pt-8">
-          <h2 tw="text-2xl font-bold dark:text-white flex items-center">
+          <PageTitle>
             Showing {data?.results?.length} jobs
             {isFetching && <LoadingIcon tw="text-blue-500 ml-2" />}
-          </h2>
+          </PageTitle>
           <div tw="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 gap-8 my-4">
             <Error show={isError || data?.message}>
               <p>
