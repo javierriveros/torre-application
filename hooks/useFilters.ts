@@ -64,3 +64,28 @@ export const useFiltersForJobsQuery = create((set: any) => ({
   and: [],
   setAnd: (and: any) => set({ and }),
 }));
+
+export const useFiltersForPeopleQuery = create((set: any) => ({
+  or: [],
+  setOr: (value: any) =>
+    set({
+      or: [
+        {
+          name: {
+            term: value,
+          },
+        },
+        // {
+        //   organization: {
+        //     term: value,
+        //   },
+        // },
+        // {
+        //   "skill/role": {
+        //     text: value,
+        //     experience: "potential-to-develop",
+        //   },
+        // },
+      ],
+    }),
+}));
