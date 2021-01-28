@@ -1,11 +1,11 @@
-import * as React from "react";
-import Link from "next/link";
 import "twin.macro";
+import Link from "next/link";
+import * as React from "react";
 
 import { JobImage } from "./JobImage";
 import { Tag } from "@/components/Tag";
+import { Opportunity } from "@/@types";
 import { Button } from "@/components/Button";
-import { Opportunity } from "@/services/api";
 import { formatMoney, split } from "@/utils";
 import { CashIcon, LocationIcon } from "@/components/Icons";
 import { ConditionalWrap } from "@/components/ConditionalWrap";

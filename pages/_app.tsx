@@ -1,15 +1,15 @@
+import Head from "next/head";
+import NProgress from "nprogress";
+import Router from "next/router";
 import type { AppProps } from "next/app";
 import { GlobalStyles } from "twin.macro";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
-import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+import "@/styles/nprogress.css";
 import BaseStyles from "@/styles/BaseStyles";
 import { ThemeProvider } from "@/components/Theme";
-
-import NProgress from "nprogress";
-import "@/styles/nprogress.css";
-import Router from "next/router";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());

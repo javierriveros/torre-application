@@ -12,7 +12,7 @@ export const FilterItem = ({
 } & React.InputHTMLAttributes<any>) => {
   const { setFilters } = useFilters();
   const onChange = React.useCallback(
-    (e) => {
+    (e: any) => {
       setFilters(e.target.name, e.target.value);
     },
     [setFilters]

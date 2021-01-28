@@ -2,8 +2,8 @@ import * as React from "react";
 import "twin.macro";
 
 import { Button } from "@/components/Button";
-import { FilterItem, FilterGroup } from "@/components/Filters";
 import { useFilters } from "@/hooks/useFilters";
+import { FilterItem, FilterGroup } from "@/components/Filters";
 
 export const Sidebar = ({ onSubmit }: { onSubmit: any }) => {
   const { getFilters } = useFilters();

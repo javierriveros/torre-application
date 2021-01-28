@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { Organization } from "@/services/api";
 import "twin.macro";
+import Image from "next/image";
+import { Organization } from "@/@types";
 
 interface Props {
   organizations: Organization[];
@@ -10,7 +10,7 @@ export const JobImage = ({ organizations }: Props) => {
     (organization: Organization) =>
       organization.picture !== "" ||
       organization.picture !== null ||
-      organization.picture !== undefined,
+      organization.picture !== undefined
   );
 
   if (picture.length > 0 && picture[0].picture)

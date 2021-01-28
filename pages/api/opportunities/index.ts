@@ -1,13 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
-    return res
-      .status(405)
-      .json({ message: `This route doesn't support ${req.method} method` });
+    return res.status(405).json({ message: `This route doesn't support ${req.method} method` });
   }
 
   const {
@@ -16,7 +11,7 @@ export default async function handler(
       page = 0,
       periodicity = "hourly",
       lang = "en",
-      size = 0,
+      size = 10,
       aggregate = true,
       offset = 0,
     },
@@ -43,7 +38,7 @@ export default async function handler(
             "Content-Type": "application/json",
           },
           body: JSON.stringify(req.body),
-        },
+        }
       )
     ).json();
     res.json(result);

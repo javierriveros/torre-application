@@ -1,5 +1,6 @@
-import { Svg } from "./Svg";
 import "twin.macro";
+import { Svg } from "./Svg";
+
 export const ErrorIcon = ({ ...props }) => (
   <Svg viewBox="0 0 20 20" {...props}>
     <path
