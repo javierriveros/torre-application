@@ -1,19 +1,22 @@
 import "twin.macro";
 import Image from "next/image";
 
-import { ListItem } from "./styles";
 import { Tag } from "@/components/Tag";
-import { Experience } from "@/services/api";
+import { Flex } from "@/components/utils";
 import { AwardIcon } from "@/components/Icons";
-import { ConditionalWrap } from "../ConditionalWrap";
+import { ConditionalWrap } from "@/components/ConditionalWrap";
+import { ExperienceAvatar, ListItem, TextMuted } from "./styles";
+import { Experience } from "@/services/api";
 
-export const ExperienceCard: React.FC<{ experience: Experience }> = ({ experience }) => {
-  const organizationPicture = experience.organizations.filter(
+export const ExperienceCard: React.FC<{
+  experience: Experience;
+}> = ({ experience }) => {
+  const organizationPicture = experience?.organizations?.filter(
     (org) => org?.picture !== undefined || org?.picture !== null
   );
 
   return (
-    <div key={experience.id} tw=" p-4 flex items-start justify-start">
+    <Flex alignItemsStart justifyStart tw="p-4">
       <div tw="mr-2">
         {organizationPicture.length > 0 && organizationPicture[0]?.picture ? (
           <Image
@@ -21,37 +24,38 @@ export const ExperienceCard: React.FC<{ experience: Experience }> = ({ experienc
             width={50}
             height={50}
             layout="fixed"
-            tw="rounded-full"
+            tw="rounded"
           />
         ) : (
-          <span tw="w-12 h-12 flex items-center justify-center rounded-full text-2xl bg-gradient-to-br from-purple-400 to-indigo-500 text-white">
+          <ExperienceAvatar>
             {experience.category === "awards" ? <AwardIcon /> : experience.name.substring(0, 1)}
-          </span>
+          </ExperienceAvatar>
         )}
       </div>
       <div tw="w-full">
         <p tw="dark:text-gray-300">{experience.name}</p>
+        {experience?.organizations?.length > 0 && <Tag>{experience.organizations[0]?.name}</Tag>}
         <p>
           <ConditionalWrap condition={Boolean(experience.fromMonth && experience.fromYear)}>
-            <span tw="text-gray-600 text-sm dark:text-gray-300">
+            <TextMuted>
               {experience.fromMonth} {experience.fromYear}
-            </span>
+            </TextMuted>
           </ConditionalWrap>
-          <span tw="text-gray-600 text-sm dark:text-gray-300">
-            {experience.toMonth && experience.toYear
-              ? " - " + experience.toMonth + " " + experience.toYear
+
+          <TextMuted>
+            {experience?.toMonth && experience?.toYear
+              ? " - " + experience?.toMonth + " " + experience?.toYear
               : " - Current"}
-          </span>
+          </TextMuted>
         </p>
 
         <div tw="mt-2">
           {experience.responsibilities &&
-            experience.responsibilities.map((responsibility, index) => (
+            experience?.responsibilities?.map((responsibility: string, index: number) => (
               <ListItem key={`responsibility-${index}`}>{responsibility}</ListItem>
             ))}
         </div>
-        <Tag>{experience.category}</Tag>
       </div>
-    </div>
+    </Flex>
   );
 };

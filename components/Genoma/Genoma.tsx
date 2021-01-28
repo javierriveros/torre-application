@@ -1,13 +1,13 @@
-import "twin.macro";
 import Image from "next/image";
+import "twin.macro";
 
+import { split } from "@/utils";
 import { Flex } from "@/components/utils";
-import { Experience } from "@/services/api";
+import { Education, Job, Project, Award } from "@/services/api";
 import { TorreButton } from "@/components/Button";
 import { ExperienceCard } from "./ExperienceCard";
 import { Collapsible } from "@/components/Collapsible";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
-
 import { SocialIcon, VerifiedIcon } from "@/components/Icons";
 import {
   Card,
@@ -44,7 +44,7 @@ export function Genoma({ data }: { data: any }) {
           <Username>
             {data.person.name} {data.person.verified && <VerifiedIcon />}
           </Username>
-          <Flex centerH wrap tw="gap-2 mb-2">
+          <Flex centerH tw="gap-2 mb-2" wrap={true}>
             {data.person.links.map((link: any) => (
               <SocialLink
                 href={link.address}
@@ -71,9 +71,7 @@ export function Genoma({ data }: { data: any }) {
         </Card>
         <ConditionalWrap condition={Boolean(data.interests)}>
           <Card>
-            <h2 tw="font-semibold text-xl mb-2 dark:text-white">
-              Skills s/he wants to develop:
-            </h2>
+            <h2 tw="font-semibold text-xl mb-2 dark:text-white">Skills s/he wants to develop:</h2>
 
             <ul>
               {data.interests?.map((interest: any) => (
@@ -89,7 +87,7 @@ export function Genoma({ data }: { data: any }) {
 
             <ul>
               {data?.strengths?.map((strength: any) => (
-                <ListItem>{strength.name}</ListItem>
+                <ListItem key={strength.id}>{strength.name}</ListItem>
               ))}
             </ul>
           </Card>
@@ -103,13 +101,55 @@ export function Genoma({ data }: { data: any }) {
         </Card>
 
         <Card>
-          <SectionTitle>Experience, education and awards</SectionTitle>
+          <SectionTitle>Jobs</SectionTitle>
 
           <div tw="divide-y divide-gray-300 dark:divide-gray-500">
-            <ConditionalWrap condition={Boolean(data?.experiences)}>
+            <ConditionalWrap condition={Boolean(data?.jobs)}>
               <>
-                {data.experiences?.map((experience: Experience) => (
-                  <ExperienceCard key={experience.id} experience={experience} />
+                {data.jobs?.map((job: Job) => (
+                  <ExperienceCard key={job.id} experience={job} />
+                ))}
+              </>
+            </ConditionalWrap>
+          </div>
+        </Card>
+
+        <Card>
+          <SectionTitle>Education</SectionTitle>
+
+          <div tw="divide-y divide-gray-300 dark:divide-gray-500">
+            <ConditionalWrap condition={Boolean(data?.education)}>
+              <>
+                {data.education?.map((education: Education) => (
+                  <ExperienceCard key={education.id} experience={education} />
+                ))}
+              </>
+            </ConditionalWrap>
+          </div>
+        </Card>
+
+        <Card>
+          <SectionTitle>Projects</SectionTitle>
+
+          <div tw="divide-y divide-gray-300 dark:divide-gray-500">
+            <ConditionalWrap condition={Boolean(data?.projects)}>
+              <>
+                {data.projects?.map((project: Project) => (
+                  <ExperienceCard key={project.id} experience={project} />
+                ))}
+              </>
+            </ConditionalWrap>
+          </div>
+        </Card>
+
+        <Card>
+          <SectionTitle>Awards</SectionTitle>
+
+          <div tw="divide-y divide-gray-300 dark:divide-gray-500">
+            <ConditionalWrap condition={Boolean(data?.awards)}>
+              <>
+                {data.awards?.map((award: Award) => (
+                  <ExperienceCard key={award.id} experience={award} />
                 ))}
               </>
             </ConditionalWrap>
@@ -126,9 +166,7 @@ export function Genoma({ data }: { data: any }) {
                   <LanguageCode>{lang.code}</LanguageCode>
                   <p tw="px-2">
                     <LanguageName>{lang.language}</LanguageName>
-                    <LanguageFluency>
-                      {lang.fluency.split("-").join(" ")}
-                    </LanguageFluency>
+                    <LanguageFluency>{split(lang.fluency)}</LanguageFluency>
                   </p>
                 </Flex>
               ))}

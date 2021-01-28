@@ -22,6 +22,10 @@ export const ImageCard = tw.section`inline-flex justify-center items-center mx-a
 
 export const Card = tw.article`relative p-4 rounded shadow bg-white dark:bg-gray-800 w-full mb-8`;
 
+export const TextMuted = tw.span`text-gray-600 text-sm dark:text-gray-300`;
+
+export const ExperienceAvatar = tw.span`w-12 h-12 flex items-center justify-center rounded text-2xl bg-gradient-to-br from-cyan-400 to-blue-500 text-white`;
+
 // export const SectionContainer = tw.article`bg-white p-4 rounded shadow dark:bg-gray-800`;
 
 export const SectionTitle = tw.h3`font-semibold text-xl mb-2 dark:text-white`;
