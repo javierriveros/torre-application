@@ -7,4 +7,12 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: [
+      "starrgate.s3.amazonaws.com",
+      "res.cloudinary.com",
+      "torre-media.s3-us-west-2.amazonaws.com",
+      "s3.console.aws.amazon.com",
+    ],
+  },
 };
