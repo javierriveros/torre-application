@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Input, Label, LabelText } from "./styles";
 import "twin.macro";
-import { useFilters } from "@/hooks/useFilters";
+import { useJobsFilters } from "@/hooks";
 
 export const FilterItem = ({
   label,
@@ -10,7 +10,7 @@ export const FilterItem = ({
 }: {
   label: string;
 } & React.InputHTMLAttributes<any>) => {
-  const { setFilters } = useFilters();
+  const { setFilters } = useJobsFilters();
   const onChange = React.useCallback(
     (e: any) => {
       setFilters(e.target.name, e.target.value);
