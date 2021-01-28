@@ -7,11 +7,9 @@ import { Experience } from "@/services/api";
 import { AwardIcon } from "@/components/Icons";
 import { ConditionalWrap } from "../ConditionalWrap";
 
-export const ExperienceCard: React.FC<{ experience: Experience }> = ({
-  experience,
-}) => {
+export const ExperienceCard: React.FC<{ experience: Experience }> = ({ experience }) => {
   const organizationPicture = experience.organizations.filter(
-    (org) => org?.picture !== undefined || org?.picture !== null,
+    (org) => org?.picture !== undefined || org?.picture !== null
   );
 
   return (
@@ -27,20 +25,14 @@ export const ExperienceCard: React.FC<{ experience: Experience }> = ({
           />
         ) : (
           <span tw="w-12 h-12 flex items-center justify-center rounded-full text-2xl bg-gradient-to-br from-purple-400 to-indigo-500 text-white">
-            {experience.category === "awards" ? (
-              <AwardIcon />
-            ) : (
-              experience.name.substring(0, 1)
-            )}
+            {experience.category === "awards" ? <AwardIcon /> : experience.name.substring(0, 1)}
           </span>
         )}
       </div>
       <div tw="w-full">
         <p tw="dark:text-gray-300">{experience.name}</p>
         <p>
-          <ConditionalWrap
-            condition={Boolean(experience.fromMonth && experience.fromYear)}
-          >
+          <ConditionalWrap condition={Boolean(experience.fromMonth && experience.fromYear)}>
             <span tw="text-gray-600 text-sm dark:text-gray-300">
               {experience.fromMonth} {experience.fromYear}
             </span>
@@ -54,8 +46,8 @@ export const ExperienceCard: React.FC<{ experience: Experience }> = ({
 
         <div tw="mt-2">
           {experience.responsibilities &&
-            experience.responsibilities.map((responsibility) => (
-              <ListItem>{responsibility}</ListItem>
+            experience.responsibilities.map((responsibility, index) => (
+              <ListItem key={`responsibility-${index}`}>{responsibility}</ListItem>
             ))}
         </div>
         <Tag>{experience.category}</Tag>
