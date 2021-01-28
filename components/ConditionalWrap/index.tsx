@@ -6,7 +6,5 @@ interface ConditionalWrapProps {
   children: JSX.Element;
 }
 
-export const ConditionalWrap = ({
-  condition,
-  children,
-}: ConditionalWrapProps) => (condition ? React.cloneElement(children) : null);
+export const ConditionalWrap = ({ condition, children }: ConditionalWrapProps) =>
+  condition ? React.cloneElement(children) : null;
