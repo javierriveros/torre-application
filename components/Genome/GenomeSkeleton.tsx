@@ -1,9 +1,9 @@
-import { Card } from "@/components/Genoma/styles";
+import { Card } from "@/components/Genome/styles";
 import { Flex } from "@/components/utils";
 import { default as ReactSkeleton } from "react-loading-skeleton";
 import "twin.macro";
 
-export const GenomaSkeleton = () => (
+export const GenomeSkeleton = () => (
   <>
     <div tw="col-span-1">
       <Flex centerH>

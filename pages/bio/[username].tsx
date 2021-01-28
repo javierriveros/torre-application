@@ -7,10 +7,10 @@ import "twin.macro";
 import { Error } from "@/components/Error";
 import { Layout } from "@/components/Layout";
 import { fetchBio, useBio } from "@/hooks/queries";
-import { Genoma, GenomaSkeleton } from "@/components/Genoma";
+import { Genome, GenomeSkeleton } from "@/components/Genome";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
 
-export default function UserGenoma() {
+export default function UserGenome() {
   const {
     query: { username },
   } = useRouter();
@@ -20,7 +20,7 @@ export default function UserGenoma() {
     <Layout title={`${data ? data?.person?.name : username}'s professional genome`}>
       <section tw="w-full bg-gray-50 dark:bg-dark-600 grid grid-cols-1 md:grid-cols-3 px-8 py-8 gap-8 dark:bg-gray-900">
         <ConditionalWrap condition={isLoading}>
-          <GenomaSkeleton />
+          <GenomeSkeleton />
         </ConditionalWrap>
         <Error show={isError || data?.message}>
           <p>
@@ -29,7 +29,7 @@ export default function UserGenoma() {
           </p>
         </Error>
         <ConditionalWrap condition={data && data.person && !isError}>
-          <Genoma data={data} />
+          <Genome data={data} />
         </ConditionalWrap>
       </section>
     </Layout>

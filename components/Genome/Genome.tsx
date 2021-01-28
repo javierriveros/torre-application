@@ -25,7 +25,7 @@ import {
   Username,
 } from "./styles";
 
-export function Genoma({ data }: { data: any }) {
+export function Genome({ data }: { data: any }) {
   return (
     <>
       <Flex tw="col-span-1" centerV col>

@@ -2,7 +2,7 @@ import tw, { styled } from "twin.macro";
 import { default as ReactSkeleton, SkeletonTheme } from "react-loading-skeleton";
 
 import { ButtonsContainer } from "./styles";
-import { Card } from "@/components/Genoma/styles";
+import { Card } from "@/components/Genome/styles";
 
 const StyledSkeleton = styled(ReactSkeleton)`
   ${tw`dark:bg-gray-600`}
