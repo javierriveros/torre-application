@@ -1,24 +1,25 @@
+import "twin.macro";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
-import "twin.macro";
 
+import { Job } from "@/components/Job";
 import { Error } from "@/components/Error";
 import { Layout } from "@/components/Layout";
-import { fetchBio, useBio } from "@/hooks/queries";
-import { Genome, GenomeSkeleton } from "@/components/Genome";
+import { GenomeSkeleton } from "@/components/Genome";
+import { fetchOportunity, useOpportunity } from "@/hooks";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
 
 export default function UserGenome() {
   const {
-    query: { username },
+    query: { id },
   } = useRouter();
-  const { data, isLoading, isError, error } = useBio(username as string);
+  const { data, isLoading, isError, error } = useOpportunity(id as string);
 
   return (
-    <Layout title={`${data ? data?.person?.name : username}'s professional genome`}>
-      <section tw="w-full bg-gray-50 dark:bg-dark-600 grid grid-cols-1 md:grid-cols-3 px-8 py-8 gap-8 dark:bg-gray-900">
+    <Layout>
+      <section tw="w-full bg-gray-50 dark:bg-dark-600 grid grid-cols-1 md:grid-cols-4 px-8 py-8 gap-8 dark:bg-gray-900">
         <ConditionalWrap condition={isLoading}>
           <GenomeSkeleton />
         </ConditionalWrap>
@@ -28,9 +29,7 @@ export default function UserGenome() {
             {data?.message && data.message}
           </p>
         </Error>
-        <ConditionalWrap condition={data && data.person && !isError}>
-          <Genome data={data} />
-        </ConditionalWrap>
+        {data && <Job data={data} />}
       </section>
     </Layout>
   );
@@ -38,9 +37,9 @@ export default function UserGenome() {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
-  const { username } = context.query;
+  const { id } = context.query;
 
-  await queryClient.prefetchQuery(["bio", username], () => fetchBio(username as string));
+  await queryClient.prefetchQuery(["opportunity", id], () => fetchOportunity(id as string));
 
   return {
     props: {

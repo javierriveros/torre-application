@@ -5,6 +5,7 @@ import { split } from "@/utils";
 import { Flex } from "@/components/utils";
 import { Education, Job, Project, Award } from "@/services/api";
 import { TorreButton } from "@/components/Button";
+import { LocationIcon } from "@/components/Icons";
 import { ExperienceCard } from "./ExperienceCard";
 import { Collapsible } from "@/components/Collapsible";
 import { NotFoundImage } from "@/components/NotFoundImage";
@@ -25,7 +26,7 @@ import {
   Username,
 } from "./styles";
 
-export function Genoma({ data }: { data: any }) {
+export function Genome({ data }: { data: any }) {
   return (
     <>
       <Flex tw="col-span-1" centerV col>
@@ -62,7 +63,9 @@ export function Genoma({ data }: { data: any }) {
             ))}
           </Flex>
           <ConditionalWrap condition={Boolean(data.person?.location)}>
-            <Location tw="mb-2">{data.person.location.name}</Location>
+            <Location>
+              <LocationIcon tw="text-blue-500" /> {data.person.location.name}
+            </Location>
           </ConditionalWrap>
           <UserHeadline>{data.person.professionalHeadline}</UserHeadline>
           <TorreButton

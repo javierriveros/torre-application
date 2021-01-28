@@ -7,9 +7,9 @@ export const Image = styled(NextImage)`
   ${tw`object-cover w-16 h-16 mb-4 rounded shadow`}
 `;
 
-export const UserName = tw.h4`font-semibold text-base mb-2 dark:text-white`;
+export const UserName = tw.h4`font-semibold text-base mb-2 dark:text-white overflow-hidden overflow-ellipsis`;
 
-export const UserHeadline = tw.p`text-gray-500 text-sm font-light dark:text-gray-500`;
+export const UserHeadline = tw.p`text-gray-500 text-sm font-light dark:text-gray-500 overflow-hidden overflow-ellipsis`;
 
 export const JobSlider = styled.div`
   ${tw`flex items-center gap-4 mt-4 overflow-x-scroll overflow-y-hidden whitespace-nowrap`}

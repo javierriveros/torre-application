@@ -5,9 +5,10 @@ import { Error } from "@/components/Error";
 import { Layout } from "@/components/Layout";
 import { Search } from "@/components/Search";
 import { Button } from "@/components/Button";
+import { PageTitle } from "@/components/utils";
 import { LoadingIcon } from "@/components/Icons";
 import { JobsSkeleton } from "@/components/Jobs";
-import { UserCard } from "@/components/Users/UserCard";
+import { UserCard } from "@/components/Users";
 import { useFiltersForPeopleQuery, usePeople } from "@/hooks";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
 
@@ -41,10 +42,10 @@ export default function PeoplePage() {
         />
 
         <section tw="col-span-1 px-8 pt-8">
-          <h2 tw="text-2xl font-bold dark:text-white flex items-center">
+          <PageTitle>
             Showing {data?.results?.length} users
             {isFetching && <LoadingIcon tw="text-blue-500 ml-2" />}
-          </h2>
+          </PageTitle>
           <div tw="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 my-4">
             <Error show={isError || data?.message}>
               <p>
