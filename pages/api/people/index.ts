@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const result = await (
       await fetch(
-        `https://search.torre.co/opportunities/_search/?${
+        `https://search.torre.co/people/_search/?${
           // @ts-ignore
           new URLSearchParams({
             currency,
