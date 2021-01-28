@@ -1,8 +1,9 @@
-import { Card } from "@/components/Genoma/styles";
-import { ButtonsContainer } from "./styles";
-
-import { default as ReactSkeleton, SkeletonTheme } from "react-loading-skeleton";
 import tw, { styled } from "twin.macro";
+import { default as ReactSkeleton, SkeletonTheme } from "react-loading-skeleton";
+
+import { ButtonsContainer } from "./styles";
+import { Card } from "@/components/Genoma/styles";
+
 const StyledSkeleton = styled(ReactSkeleton)`
   ${tw`dark:bg-gray-600`}
 `;
