@@ -1,17 +1,18 @@
 import * as React from "react";
 import "twin.macro";
+import { useRouter } from "next/router";
+
+import { Opportunity } from "@/@types";
 import { Error } from "@/components/Error";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/Button";
 import { Search } from "@/components/Search";
-import { Opportunity } from "@/services/api";
 import { Sidebar } from "@/components/Sidebar";
 import { LoadingIcon } from "@/components/Icons";
 import { useOpportunities } from "@/hooks/queries";
 import { JobCard, JobsSkeleton } from "@/components/Jobs";
 import { ConditionalWrap } from "@/components/ConditionalWrap";
-import { useFilters, useFiltersForQuery } from "@/hooks/useFilters";
-import { useRouter } from "next/router";
+import { useFilters, useFiltersForQuery } from "@/hooks";
 
 export default function Home() {
   const { query } = useRouter();

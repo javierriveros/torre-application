@@ -69,7 +69,7 @@ interface Datum {
   name: string;
 }
 
-interface Education {
+export interface Education {
   id: string;
   category: string;
   name: string;
@@ -87,7 +87,7 @@ interface Education {
   rank: number;
 }
 
-interface Project {
+export interface Project {
   id: string;
   category: string;
   name: string;
@@ -108,7 +108,7 @@ interface Project {
   rank: number;
 }
 
-interface Job {
+export interface Job {
   id: string;
   category: string;
   name: string;
@@ -128,7 +128,7 @@ interface Job {
   rank: number;
 }
 
-interface Award {
+export interface Award {
   id: string;
   category: string;
   name: string;
@@ -153,8 +153,8 @@ export interface Experience {
   name: string;
   organizations: Organization[];
   responsibilities: string[];
-  fromMonth: string;
-  fromYear: string;
+  fromMonth?: string;
+  fromYear?: string;
   toMonth?: string;
   toYear?: string;
   remote?: boolean;

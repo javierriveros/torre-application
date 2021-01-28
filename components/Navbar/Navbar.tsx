@@ -5,7 +5,7 @@ import "twin.macro";
 import { Nav } from "./styles";
 import { ThemeToggle } from "../Theme";
 
-export const Navbar: React.FC<{}> = () => {
+export const Navbar: React.FC = () => {
   return (
     <Nav>
       <Link href="/">

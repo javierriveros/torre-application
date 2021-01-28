@@ -28,7 +28,7 @@ export const SectionTitle = tw.h3`font-semibold text-xl mb-2 dark:text-white`;
 
 export const LanguagesContainer = tw.div`divide-y divide-gray-300 dark:divide-gray-500 `;
 
-export const ListItem: React.FC<{}> = ({ children }) => (
+export const ListItem: React.FC = ({ children }) => (
   <Flex alignItemsStart tw="gap-1 mb-1 pl-5 relative" as="li">
     <CheckIcon tw="text-green-500 w-4 h-4 absolute left-0" />
     <span tw="text-sm text-gray-800 dark:text-gray-300">{children}</span>
