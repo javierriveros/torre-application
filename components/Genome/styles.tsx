@@ -5,7 +5,7 @@ import { Flex } from "@/components/utils";
 // User data
 export const Username = tw.h3`flex items-center justify-center p-4 text-lg font-semibold dark:text-white`;
 
-export const Location = tw.p`dark:text-gray-300 text-gray-600 text-sm text-center`;
+export const Location = tw.p`dark:text-gray-300 text-gray-600 text-sm text-center mb-2 flex items-center justify-center`;
 
 export const UserHeadline = tw.p`prose dark:text-gray-300`;
 
