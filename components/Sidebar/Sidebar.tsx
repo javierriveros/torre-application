@@ -41,7 +41,7 @@ export const Sidebar = ({ onSubmit }: { onSubmit: any }) => {
             <FilterItem label="Collage.com" name="organization" value="Collage.com" />
             <FilterItem label="Stripe" name="organization" value="Stripe" />
             <FilterItem label="Attlasian" name="organization" value="Attlasian" />
-            <FilterItem label="BairesDev" name="BairesDev" value="BairesDev" />
+            <FilterItem label="BairesDev" name="organization" value="BairesDev" />
           </FilterGroup>
         </div>
         <Button as="button" tw="flex md:sticky bottom-2" onClick={() => onSubmit(getFilters())}>

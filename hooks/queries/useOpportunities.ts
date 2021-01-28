@@ -24,7 +24,7 @@ const fetchOpportunities = async ({
 }: QueryProps) => {
   const res = await fetch(
     //@ts-ignore
-    `${URL}/api/opportunities/?${new URLSearchParams({
+    `${URL}/api/opportunities?${new URLSearchParams({
       currency,
       page,
       periodicity,

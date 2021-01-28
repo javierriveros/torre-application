@@ -18,7 +18,9 @@ export const Search = ({ onSubmit, initialValue = "", placeholder }: Props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!(searchTerm.length > 0) || !(searchTerm.split(" ").join("").length > 0)) return;
+          if (!(searchTerm.length > 0) || !(searchTerm.split(" ").join("").length > 0)) {
+            return;
+          }
           //@ts-ignore
           onSubmit(searchTerm);
         }}

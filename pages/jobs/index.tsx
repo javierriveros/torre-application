@@ -21,7 +21,7 @@ export default function JobsPage() {
   const { and, setAnd } = useFiltersForJobsQuery();
 
   React.useEffect(() => {
-    if (query?.term?.length) {
+    if (query?.term && query?.term?.length > 0) {
       // @ts-ignore
       setAnd([
         ...getFilters(),
@@ -63,15 +63,7 @@ export default function JobsPage() {
         <Sidebar
           onSubmit={(value: any) => {
             // @ts-ignore
-            setAnd([
-              ...value,
-              {
-                "skill/role": {
-                  text: query?.term,
-                  experience: "potential-to-develop",
-                },
-              },
-            ]);
+            setAnd([...value]);
           }}
         />
 
@@ -83,7 +75,7 @@ export default function JobsPage() {
           <div tw="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 gap-8 my-4">
             <Error show={isError || data?.message}>
               <p>
-                {/* @ts-ignore */}
+                {/* @ts-ignore * */}
                 {isError && error.message}
                 {data?.message && data.message}
               </p>
