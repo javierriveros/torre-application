@@ -214,7 +214,7 @@ interface Stats {
   projects: number;
 }
 
-interface Person {
+export interface Person {
   professionalHeadline: string;
   completion: number;
   showPhone: boolean;

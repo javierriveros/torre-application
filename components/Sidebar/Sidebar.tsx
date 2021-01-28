@@ -2,11 +2,11 @@ import * as React from "react";
 import "twin.macro";
 
 import { Button } from "@/components/Button";
-import { useFilters } from "@/hooks/useFilters";
+import { useJobsFilters } from "@/hooks/useFilters";
 import { FilterItem, FilterGroup } from "@/components/Filters";
 
 export const Sidebar = ({ onSubmit }: { onSubmit: any }) => {
-  const { getFilters } = useFilters();
+  const { getFilters } = useJobsFilters();
 
   return (
     <aside tw="col-span-1 md:col-span-3 p-8">

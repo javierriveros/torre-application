@@ -4,7 +4,7 @@ import { combine } from "zustand/middleware";
 
 type NotDefined = Record<string, unknown>;
 
-export const useFilters = create(
+export const useJobsFilters = create(
   combine(
     {
       status: null, // or "closed"
@@ -55,12 +55,37 @@ export const useFilters = create(
               },
             }),
           },
-        ].filter((f) => JSON.stringify(f) !== "{}"),
+        ].filter((f: any) => JSON.stringify(f) !== "{}"),
     })
   )
 );
 
-export const useFiltersForQuery = create((set) => ({
+export const useFiltersForJobsQuery = create((set: any) => ({
   and: [],
   setAnd: (and: any) => set({ and }),
+}));
+
+export const useFiltersForPeopleQuery = create((set: any) => ({
+  or: [],
+  setOr: (value: any) =>
+    set({
+      or: [
+        {
+          name: {
+            term: value,
+          },
+        },
+        // {
+        //   organization: {
+        //     term: value,
+        //   },
+        // },
+        // {
+        //   "skill/role": {
+        //     text: value,
+        //     experience: "potential-to-develop",
+        //   },
+        // },
+      ],
+    }),
 }));

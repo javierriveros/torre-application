@@ -7,9 +7,10 @@ import { SearchContainer, SearchBar, SearchInput } from "./styles";
 interface Props {
   onSubmit: any;
   initialValue: string;
+  placeholder: string;
 }
 
-export const Search = ({ onSubmit, initialValue = "" }: Props) => {
+export const Search = ({ onSubmit, initialValue = "", placeholder }: Props) => {
   const [searchTerm, setSearchTerm] = React.useState(initialValue);
 
   return (
@@ -17,7 +18,7 @@ export const Search = ({ onSubmit, initialValue = "" }: Props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!searchTerm.length) return;
+          if (!(searchTerm.length > 0) || !(searchTerm.split(" ").join("").length > 0)) return;
           //@ts-ignore
           onSubmit(searchTerm);
         }}
@@ -25,7 +26,7 @@ export const Search = ({ onSubmit, initialValue = "" }: Props) => {
         <SearchBar>
           <SearchInput
             type="text"
-            placeholder="Find a job that matches with you"
+            placeholder={placeholder}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
