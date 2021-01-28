@@ -24,6 +24,7 @@ export default function UserGenome() {
         </ConditionalWrap>
         <Error show={isError || data?.message}>
           <p>
+            {/* @ts-ignore */}
             {isError && error.message}
             {data?.message && data.message}
           </p>

@@ -83,6 +83,7 @@ export default function JobsPage() {
           <div tw="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 gap-8 my-4">
             <Error show={isError || data?.message}>
               <p>
+                {/* @ts-ignore */}
                 {isError && error.message}
                 {data?.message && data.message}
               </p>

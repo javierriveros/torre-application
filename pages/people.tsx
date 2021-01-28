@@ -49,6 +49,7 @@ export default function PeoplePage() {
           <div tw="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 my-4">
             <Error show={isError || data?.message}>
               <p>
+                {/* @ts-ignore */}
                 {isError && error.message}
                 {data?.message && data.message}
               </p>

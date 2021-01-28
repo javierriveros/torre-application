@@ -8,8 +8,7 @@ export const MenuLink = tw.a`block px-4 py-2 text-sm text-gray-700 hover:bg-gray
 
 export const NavLink = styled.a<{ isActive?: boolean }>`
   ${tw`transition hover:text-torre-500`}
-  ${({ isActive }) =>
-    isActive ? tw`font-medium text-torre-500` : tw`font-normal text-gray-500`}
+  ${({ isActive }) => (isActive ? tw`font-medium text-torre-500` : tw`font-normal text-gray-500`)}
 `;
 
 export const Nav = tw.nav`fixed z-10 flex items-center w-full px-8 py-2 bg-white shadow dark:bg-gray-800 justify-between transition-colors`;
